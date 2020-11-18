@@ -1,0 +1,64 @@
+<mat-card class="md-primary" style="max-width: 400px; margin:auto; margin-top: 25%; padding: 0px;">
+
+    <mat-card-header class="md-primary" style="border-radius: 5px 5px 0px 0px; padding: 10px 10px 0px 0px; background-color: primary;" >
+        <mat-card-title>Registration</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="padding: 5px;">
+        <mat-form-field class="userField" >
+            <mat-label>User</mat-label>
+            <input matInput [formControl]="userFormControl" [errorStateMatcher]="matcher" id="user" [(ngModel)]="user">
+            <mat-error *ngIf="userFormControl.hasError('required')">
+                Username is <strong>required</strong>
+            </mat-error>
+    
+        </mat-form-field>
+    
+        <mat-form-field class="passwordField">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" id="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+    
+        </mat-form-field>
+
+        <mat-form-field class="passwordVerifField">
+            <mat-label>Repeat your password</mat-label>
+            <input matInput type="password" id="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+    
+        </mat-form-field>
+
+        <mat-form-field class="emailField">
+            <mat-label>Repeat your password</mat-label>
+            <input matInput type="email" id="email" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+    
+        </mat-form-field>
+
+        <mat-form-field class="emailVerifField">
+            <mat-label>Repeat your password</mat-label>
+            <input matInput type="password" id="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+    
+        </mat-form-field>
+
+        <button (click)="Login()" mat-raised-button color="accent" style="margin: 0 40%;" >Login</button>
+        
+        <mat-divider style="position:relative; margin: 15px 0px;"></mat-divider>
+        
+        <p>Don't have an account yet? <a href="https://www.google.com/">Register</a></p>
+        
+    </mat-card-content>
+
+    
+    
+
+</mat-card>
