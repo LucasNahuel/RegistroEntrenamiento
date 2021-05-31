@@ -1,0 +1,38 @@
+<div style="display: flex;">
+    <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <app-app-toolbar style="width: 100%;">
+    </app-app-toolbar>
+</div>
+
+<mat-sidenav-container style="height: 100%">
+
+    <mat-sidenav #drawer style="width:200px;">
+        
+        <app-navigation-drawer></app-navigation-drawer>
+        
+    </mat-sidenav>
+
+    <div style="margin: 0 auto; max-width: 800px; width: 100%; background-color: white; display: flex; height: 50px;">
+        <div style="width: 15%;">
+            <button mat-button style="margin: auto auto; width: 100%; height: 100%;" (click)="this.DateBack();">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+        </div>
+        <div style="width: 70%;text-align: center;margin: auto auto;">
+            {{this.date}}
+        </div>
+        <div style="width: 15%;">
+            <button mat-button style="margin: auto auto; width: 100%; height: 100%;" (click)="this.DateForward();">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+            
+        </div>
+    </div>
+    <!--
+    <div *ngIf="training.length == 0" style="text-align: center; margin-top:2em;">
+        Ops! No training founds
+    </div>    
+    -->
+</mat-sidenav-container>

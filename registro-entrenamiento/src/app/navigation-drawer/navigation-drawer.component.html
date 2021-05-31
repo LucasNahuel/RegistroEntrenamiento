@@ -1,0 +1,53 @@
+
+<mat-accordion style="width:200px;">
+
+    <div class="drawer-link" style="padding: 0 0;">
+        <a [routerLink]="['/trainlog']" style="width:100%; text-decoration:none; color: grey">
+            <div style="display:flex;">
+                <mat-icon matListIcon style="margin:auto 0;">book</mat-icon>
+                <p>Register</p>
+            </div>
+        </a>
+    </div>
+
+
+    <mat-expansion-panel style="width: 100%;padding-right: 10px; box-shadow: none; color:grey; margin: 0 0;">
+        <mat-expansion-panel-header style="padding: 0 0; padding-right: 10px;">
+
+            <div style="display:flex;">
+                <mat-icon matListIcon style="margin:auto 0;">fitness_center</mat-icon>
+                <p>Workouts</p>
+            </div>
+            
+        </mat-expansion-panel-header>
+
+        <div style="padding: 0 0;">
+            <a [routerLink]="['/new-training']" style="width:100%; text-decoration:none; color: grey">
+                <div style="display:flex;">
+                    <mat-icon matListIcon style="margin:auto 0;">add</mat-icon>
+                    <p>Create new</p>
+                </div>
+            </a>
+        </div>
+
+        <div style="padding: 0 0;">
+            <a [routerLink]="['/']" style="width:100%; text-decoration:none; color: grey">
+                <div style="display:flex;">
+                    <mat-icon matListIcon style="margin:auto 0;">delete</mat-icon>
+                    <p>Delete one</p>
+                </div>
+            </a>
+        </div>
+
+    </mat-expansion-panel>
+
+    <div class="drawer-link" style="padding: 0 0;">
+        <a [routerLink]="['/']" style="width:100%; text-decoration:none; color: grey">
+            <div style="display:flex;">
+                <mat-icon matListIcon style="margin:auto 0;">assessment</mat-icon>
+                <p>Analytics</p>
+            </div>
+        </a>
+    </div>
+
+</mat-accordion>

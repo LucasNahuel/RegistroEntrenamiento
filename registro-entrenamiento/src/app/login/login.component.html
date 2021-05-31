@@ -1,30 +1,38 @@
-<mat-card class="md-primary" style="max-width: 400px; margin:auto; margin-top: 25%; padding: 0px;">
+<app-app-toolbar></app-app-toolbar>
+
+<mat-card class="md-primary" style="max-width: 400px; margin:auto; margin-top: 2em; padding: 0px;">
 
     <mat-card-header class="md-primary" style="border-radius: 5px 5px 0px 0px; padding: 10px 10px 0px 0px; background-color: primary;" >
         <mat-card-title>Login</mat-card-title>
     </mat-card-header>
 
-    <mat-card-content style="padding: 5px;">
-        <mat-form-field class="userField" >
-            <mat-label>User</mat-label>
-            <input matInput [formControl]="userFormControl" [errorStateMatcher]="matcher" id="user" [(ngModel)]="user">
-            <mat-error *ngIf="userFormControl.hasError('required')">
-                Username is <strong>required</strong>
-            </mat-error>
-    
-        </mat-form-field>
-    
-        <mat-form-field class="passwordField" >
-            <mat-label>Password</mat-label>
-            <input matInput type="password" id="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password">
-            <mat-error *ngIf="passwordFormControl.hasError('required')">
-                Password is <strong>required</strong>
-            </mat-error>
-    
-        </mat-form-field>
 
-        <button (click)="Login()" mat-raised-button color="accent" style="margin: 0 40%;" >Login</button>
+    <mat-card-content style="padding: 5px;">
+
+        <form [formGroup]="loginForm" (ngSubmit)="Login()">
+
+            <mat-form-field class="userField" >
+                <mat-label>User</mat-label>
+                <input matInput formControlName="userFormControl" [errorStateMatcher]="matcher" id="user" [(ngModel)]="user">
+                <mat-error *ngIf="loginForm.get('userFormControl').hasError('required')">
+                    Username is <strong>required</strong>
+                </mat-error>
         
+            </mat-form-field>
+        
+            <mat-form-field class="passwordField" >
+                <mat-label>Password</mat-label>
+                <input matInput type="password" id="password" matInput formControlName="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password">
+                <mat-error *ngIf="loginForm.get('passwordFormControl').hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+        
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" style="margin: 0 40%;">Login</button>
+            
+        </form>
+
         <mat-divider style="position:relative; margin: 15px 0px;"></mat-divider>
         
         <p>Don't have an account yet? <a href="https://www.google.com/">Register</a></p>

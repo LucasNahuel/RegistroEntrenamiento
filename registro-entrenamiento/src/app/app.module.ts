@@ -6,20 +6,42 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
+import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { RegisterComponent } from './register/register.component';
-
+import { JwtInterceptor } from './jwt-interceptor.service';
+import { TrainLogComponent } from './train-log/train-log.component';
+import { CredentialErrorDialogComponent } from './dialogs/credential-error-dialog/credential-error-dialog.component';
+import { MatDialogClose, MatDialogModule, MatToolbar } from '@angular/material';
+import { UsernameErrorDialogComponent } from './dialogs/username-error-dialog/username-error-dialog.component';
+import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { CreateTrainingComponent } from './create-training/create-training.component';
+import {MatIconModule} from '@angular/material/icon';
+import { DatePipe } from '@angular/common';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { NavigationDrawerComponent } from './navigation-drawer/navigation-drawer.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NewExerciseComponent } from './dialogs/new-exercise/new-exercise.component'
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TrainLogComponent,
+    CredentialErrorDialogComponent,
+    UsernameErrorDialogComponent,
+    AppToolbarComponent,
+    CreateTrainingComponent,
+    NavigationDrawerComponent,
+    NewExerciseComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -34,11 +56,23 @@ import { RegisterComponent } from './register/register.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatExpansionModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    DatePipe
+  ],
   bootstrap: [AppComponent],
-  
+  entryComponents: [
+    CredentialErrorDialogComponent,
+    UsernameErrorDialogComponent
+  ],
 })
 export class AppModule { }
 

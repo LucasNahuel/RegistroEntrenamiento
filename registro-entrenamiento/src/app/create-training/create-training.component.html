@@ -1,0 +1,46 @@
+<div style="display: flex;">
+    <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <app-app-toolbar style="width: 100%;">
+    </app-app-toolbar>
+</div>
+
+<mat-sidenav-container style="height: 100%">
+
+    <mat-sidenav #drawer style="width:200px;">
+        
+        <app-navigation-drawer></app-navigation-drawer>
+        
+    </mat-sidenav>
+
+    <mat-card style="max-width: 800px; margin: 0 auto; margin-top: 2em;">
+        <mat-card-title>
+            New Workout
+        </mat-card-title>
+    
+
+        <form [formGroup]="createTrainingForm" (ngSubmit)="save()">
+
+            <mat-form-field class="title" >
+                <mat-label>Training name</mat-label>
+                <input matInput formControlName="title" [errorStateMatcher]="matcher" id="title" [(ngModel)]="title">
+                <mat-error *ngIf="createTrainingForm.get('title').hasError('required')">
+                    Title is <strong>required</strong>
+                </mat-error>
+        
+            </mat-form-field>
+
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="!createTrainingForm.valid" style="margin: 0 40%;">Save</button>
+
+        </form>
+        
+    
+    </mat-card>
+
+
+</mat-sidenav-container>
+
+
+

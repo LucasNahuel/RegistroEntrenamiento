@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher, MatDialog } from '@angular/material';
 import { LoginService } from '../login.service';
 import {MatButtonModule} from '@angular/material/button';
+import { CredentialErrorDialogComponent } from '../dialogs/credential-error-dialog/credential-error-dialog.component';
+import { JWTService } from '../jwt.service';
+import {Router} from '@angular/router';
 
 
 
@@ -26,28 +29,48 @@ export class LoginComponent implements OnInit {
    user="";
    password="";
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, public dialog: MatDialog, public jwtservice: JWTService, public router: Router) { }
 
   ngOnInit() {
   }
 
-  userFormControl = new FormControl('', [
-    Validators.required,
-  ]);
+  loginForm = new FormGroup({
 
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-  ]);
+    userFormControl : new FormControl('', [
+      Validators.required,
+    ]),
+
+    passwordFormControl : new FormControl('', [
+      Validators.required,
+    ]),
+
+  });
+  
+  
 
   matcher = new MyErrorStateMatcher();
 
   
   Login(): void{
 
-    console.log(this.user + this.password);
-    this.loginService.Login(this.user, this.password);
-  
+    this.loginService.Login(this.user, this.password).subscribe(val => this.LoginResponse(val));
+
+    
+
   }
+
+  LoginResponse(response): void{
+    if(response.value == "invalid credentials"){
+
+      let credentialsError = this.dialog.open(CredentialErrorDialogComponent);
+
+    }else{
+      //save the token
+      this.jwtservice.setToken(response.value);
+      this.router.navigate(['/trainlog']);
+    }
+  }
+
 
 
 }
