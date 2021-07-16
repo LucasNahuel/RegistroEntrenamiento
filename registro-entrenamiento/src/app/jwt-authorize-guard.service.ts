@@ -28,7 +28,7 @@ export class JwtAuthorizeGuardService implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot,
   state: RouterStateSnapshot): boolean {
 
-    if(this.jwtService.jwtToken){
+    if(this.jwtService.getToken()){
       if (!this.jwtService.isTokenExpired()) {
         return true;
       }

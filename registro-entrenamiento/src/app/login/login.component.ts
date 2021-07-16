@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CredentialErrorDialogComponent } from '../dialogs/credential-error-dialog/credential-error-dialog.component';
 import { JWTService } from '../jwt.service';
 import {Router} from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
 
    user="";
    password="";
+   primaryColor= environment.primaryColor;
 
   constructor(private loginService: LoginService, public dialog: MatDialog, public jwtservice: JWTService, public router: Router) { }
 
@@ -55,7 +57,6 @@ export class LoginComponent implements OnInit {
 
     this.loginService.Login(this.user, this.password).subscribe(val => this.LoginResponse(val));
 
-    
 
   }
 

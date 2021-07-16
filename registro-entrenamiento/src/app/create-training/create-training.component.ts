@@ -1,6 +1,10 @@
+import { ArrayDataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
+import { CreateTrainingService } from '../create-training.service';
+import { CreateExerciceComponent, Exercice } from '../dialogs/create-exercice/create-exercice.component';
+import { JWTService } from '../jwt.service';
 import { MyErrorStateMatcher } from '../login/login.component';
 
 @Component({
@@ -10,9 +14,9 @@ import { MyErrorStateMatcher } from '../login/login.component';
 })
 export class CreateTrainingComponent implements OnInit {
 
-  public title;
+  excercisesList: Array<any> = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public createTrainingService: CreateTrainingService, public jwtService: JWTService) { }
 
   ngOnInit() {
   }
@@ -28,6 +32,35 @@ export class CreateTrainingComponent implements OnInit {
 
   createTrainingMatcher = new MyErrorStateMatcher();
 
-  save():void{
+  Save():void{
+
+    this.createTrainingService.Save(this.jwtService.getUser(), this.createTrainingForm.get('title').value, this.excercisesList).subscribe(val => console.log(val));
+
   }
+
+  AddExercice(day: string){
+
+    let createExerciceDialog = this.dialog.open(CreateExerciceComponent, {
+      data: {day:day, sets: new Array}
+    })
+
+
+    createExerciceDialog.afterClosed().subscribe(result => {
+      result ? this.SaveResult(result) : console.log("not saved");
+    });
+
+  }
+
+  GetDayArray(day: string) : Array<any> {
+    return this.excercisesList.filter(item => item.day == day);
+  }
+
+  SaveResult(result: Array<any>){
+    this.excercisesList.push(result);
+    console.log(JSON.stringify(this.excercisesList));
+  }
+
+
 }
+
+

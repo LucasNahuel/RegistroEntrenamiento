@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
+import { RegistrationCompleteDialogComponent } from '../dialogs/registration-complete-dialog/registration-complete-dialog.component';
 import { UsernameErrorDialogComponent } from '../dialogs/username-error-dialog/username-error-dialog.component';
 import { MyErrorStateMatcher } from '../login/login.component';
 import { RegisterService } from '../register.service';
@@ -103,6 +104,8 @@ export class RegisterComponent implements OnInit {
 
       this.user="";
 
+    }else{
+      let registrationCompleteDialog = this.dialog.open(RegistrationCompleteDialogComponent);
     }
 
     

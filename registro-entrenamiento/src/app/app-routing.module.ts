@@ -8,6 +8,7 @@ import { CreateTrainingComponent } from './create-training/create-training.compo
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
+  { path: '', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'trainlog', component: TrainLogComponent, canActivate: [JwtAuthorizeGuardService]},
   { path: 'new-training', component: CreateTrainingComponent, canActivate: [JwtAuthorizeGuardService]},

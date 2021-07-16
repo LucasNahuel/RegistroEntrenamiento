@@ -1,0 +1,77 @@
+
+
+<form [formGroup]="createExerciceForm">
+
+    
+<mat-form-field class="exerciceName" (onchange)="ChangeName();">
+
+    <mat-label>Exercice name</mat-label>
+    <input matInput formControlName="name" [errorStateMatcher]="matcher" id="name" [(ngModel)]="name" (change)="ChangeName();">
+    <mat-error *ngIf="createExerciceForm.get('name').hasError('required')">
+        Name is <strong>required</strong>
+    </mat-error>
+
+</mat-form-field>
+
+<mat-table [dataSource]="this.data.sets" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="weight">
+        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+
+        <mat-footer-cell *matFooterCellDef>
+            <mat-form-field formGroupName="addSetForm" style="max-width: 50px;">
+                <mat-label>Weight</mat-label>
+                <input matInput formControlName="inputWeightField" [(ngModel)]="inputWeightField" type="number" >
+                
+                <mat-error *ngIf="createExerciceForm.get('addSetForm').get('inputWeightField').hasError('required')">
+                    insert value
+                </mat-error>
+
+            </mat-form-field>
+        </mat-footer-cell>
+
+    </ng-container>
+    
+    <ng-container matColumnDef="reps">
+        <mat-header-cell *matHeaderCellDef> Reps </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.reps}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef>
+            <mat-form-field formGroupName="addSetForm" style="max-width: 50px; margin-right: 24px;">
+                <mat-label>Reps</mat-label>
+                <input matInput formControlName="inputRepsField" [(ngModel)]="inputRepsField" type="number" >
+
+                <mat-error *ngIf="createExerciceForm.get('addSetForm').get('inputRepsField').hasError('required')">
+                    insert value
+                </mat-error>
+            </mat-form-field>
+        </mat-footer-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="RemoveSet(element)"><mat-icon color="warn">delete</mat-icon></button>    
+        </mat-cell>
+        <mat-footer-cell *matFooterCellDef>
+            <button mat-icon-button [disabled]="!this.createExerciceForm.get('addSetForm').valid" (click)="AddSet();" ><mat-icon >send</mat-icon></button> 
+        </mat-footer-cell>
+    </ng-container>
+    
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+    
+    
+</mat-table>
+
+
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button [mat-dialog-close]="data" [disabled]="!this.createExerciceForm.get('name').valid || !this.data.sets.length>0" color="primary">Save</button>
+</mat-dialog-actions>
+
+</form>

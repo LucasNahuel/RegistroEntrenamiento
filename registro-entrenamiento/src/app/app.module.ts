@@ -10,7 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { RegisterComponent } from './register/register.component';
@@ -27,8 +27,13 @@ import { DatePipe } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { NavigationDrawerComponent } from './navigation-drawer/navigation-drawer.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { NewExerciseComponent } from './dialogs/new-exercise/new-exercise.component'
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { NewExerciseComponent } from './dialogs/new-exercise/new-exercise.component';
+import { RegistrationCompleteDialogComponent } from './dialogs/registration-complete-dialog/registration-complete-dialog.component'
+import { CreateExerciceComponent } from './dialogs/create-exercice/create-exercice.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +46,8 @@ import { NewExerciseComponent } from './dialogs/new-exercise/new-exercise.compon
     CreateTrainingComponent,
     NavigationDrawerComponent,
     NewExerciseComponent,
+    RegistrationCompleteDialogComponent,
+    CreateExerciceComponent
     
   ],
   imports: [
@@ -62,7 +69,10 @@ import { NewExerciseComponent } from './dialogs/new-exercise/new-exercise.compon
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTableModule,
+    FormsModule,
+    MatGridListModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -71,7 +81,9 @@ import { NewExerciseComponent } from './dialogs/new-exercise/new-exercise.compon
   bootstrap: [AppComponent],
   entryComponents: [
     CredentialErrorDialogComponent,
-    UsernameErrorDialogComponent
+    UsernameErrorDialogComponent,
+    RegistrationCompleteDialogComponent,
+    CreateExerciceComponent
   ],
 })
 export class AppModule { }

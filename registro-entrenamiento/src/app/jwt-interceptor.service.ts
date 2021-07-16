@@ -10,7 +10,9 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    const token = this.authService.jwtToken;
+    const token = this.authService.getToken();
+
+    console.log(token);
 
     req = req.clone({
     url:  req.url,

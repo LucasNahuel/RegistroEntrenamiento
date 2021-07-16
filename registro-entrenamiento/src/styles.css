@@ -7,3 +7,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background: rgba(0,0,0,.04);
     color:black;
 }
+
+.cdk-overlay-pane{
+    max-height: 90vh;
+}
+
+.exercice-expansion-panel{
+  margin-bottom: 16px;
+}
+
+
+
+@media (max-width: 425px) {
+  .exercice-expansion-panel {
+    width: 100%;
+  }
+}
