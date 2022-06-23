@@ -1,42 +1,42 @@
-<div style="display: flex;">
+<div style="display: flex;" >
     <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
         <mat-icon>menu</mat-icon>
     </button>
-    <app-app-toolbar style="width: 100%;">
+    <app-app-toolbar style="width: 100%;" class="mat-elevation-z8">
     </app-app-toolbar>
 </div>
 
-<mat-sidenav-container style="height: 100%">
+<mat-sidenav-container style="height: 93vh">
 
-    <mat-sidenav #drawer style="width:200px;">
+    <mat-sidenav #drawer>
         
         <app-navigation-drawer></app-navigation-drawer>
         
     </mat-sidenav>
 
-    <mat-card class="mat-elevation-z8" style="max-width: 800px; margin: 0 auto; margin-top: 2em;">
-        <mat-card-title>
+    <mat-card class="mat-elevation-z8" style="max-width: 800px; margin: 0 auto; margin-top: 2em; padding: 0;">
+        <mat-card-title [ngStyle]="{'background-color': primaryColor}" style=" padding: 1em; border-top-right-radius: 4px; border-top-left-radius: 4px; color: white;">
             New Workout
         </mat-card-title>
     
 
-        <form [formGroup]="createTrainingForm" (ngSubmit)="Save()">
+        <form [formGroup]="createTrainingForm" (ngSubmit)="Save()" style=" padding: 2em; padding-top: 0;">
 
             <mat-form-field class="title" >
                 <mat-label>Training name</mat-label>
-                <input matInput formControlName="title" [errorStateMatcher]="matcher" id="title" [(ngModel)]="title">
+                <input matInput formControlName="title" [errorStateMatcher]="createTrainingMatcher" id="title" >
                 <mat-error *ngIf="createTrainingForm.get('title').hasError('required')">
                     Title is <strong>required</strong>
                 </mat-error>
         
             </mat-form-field>
 
-            <mat-card-subtitle>
+            <mat-card-subtitle style="padding-bottom: 1em; padding-top: 1em;">
                 Weekly exercise schedule:
             </mat-card-subtitle>
         
         
-            <mat-accordion class="mat-elevation-z8" multi>
+            <mat-accordion class="mat-elevation-z8" style="margin-top:1em;" multi>
 
                 <mat-expansion-panel>
 
@@ -50,7 +50,7 @@
                     <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
                         <div *ngFor='let item of GetDayArray("monday")' class="exercice-expansion-panel">
                             
-                            <mat-expansion-panel class="mat-elevation-z8"  >
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
 
                                 <mat-expansion-panel-header color="primary">
                                     <mat-panel-title>
@@ -75,7 +75,7 @@
 
 
 
-                    <button mat-raised-button (click)="AddExercice('monday');" color="primary">Add exercise</button>
+                    <button mat-raised-button type="button" (click)="AddExercice('monday');" color="primary">Add exercise</button>
 
                 </mat-expansion-panel>
 
@@ -90,7 +90,7 @@
                     <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
                         <div *ngFor='let item of GetDayArray("tuesday")' class="exercice-expansion-panel">
                             
-                            <mat-expansion-panel class="mat-elevation-z8"  >
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;"  >
 
                                 <mat-expansion-panel-header color="primary">
                                     <mat-panel-title>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
 
-                    <button mat-raised-button (click)="AddExercice('tuesday');" color="primary">Add exercise</button>
+                    <button mat-raised-button type="button" (click)="AddExercice('tuesday');" color="primary">Add exercise</button>
 
                 </mat-expansion-panel>
 
@@ -128,7 +128,7 @@
                     <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
                         <div *ngFor='let item of GetDayArray("wednesday")' class="exercice-expansion-panel">
                             
-                            <mat-expansion-panel class="mat-elevation-z8"  >
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
 
                                 <mat-expansion-panel-header color="primary">
                                     <mat-panel-title>
@@ -151,7 +151,7 @@
                         </div>
                     </div>
 
-                    <button mat-raised-button (click)="AddExercice('wednesday');" color="primary">Add exercise</button>
+                    <button mat-raised-button type="button" (click)="AddExercice('wednesday');" color="primary">Add exercise</button>
 
                 </mat-expansion-panel>
 
@@ -166,7 +166,7 @@
                     <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
                         <div *ngFor='let item of GetDayArray("thursday")' class="exercice-expansion-panel">
                             
-                            <mat-expansion-panel class="mat-elevation-z8"  >
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;"  >
 
                                 <mat-expansion-panel-header color="primary">
                                     <mat-panel-title>
@@ -189,7 +189,7 @@
                         </div>
                     </div>
 
-                    <button mat-raised-button (click)="AddExercice('thursday');" color="primary">Add exercise</button>
+                    <button mat-raised-button type="button" (click)="AddExercice('thursday');" color="primary">Add exercise</button>
 
                 </mat-expansion-panel>
 
@@ -204,7 +204,7 @@
                     <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
                         <div *ngFor='let item of GetDayArray("friday")' class="exercice-expansion-panel">
                             
-                            <mat-expansion-panel class="mat-elevation-z8"  >
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;"  >
 
                                 <mat-expansion-panel-header color="primary">
                                     <mat-panel-title>
@@ -227,7 +227,7 @@
                         </div>
                     </div>
 
-                    <button mat-raised-button (click)="AddExercice('friday');" color="primary">Add exercise</button>
+                    <button mat-raised-button type="button" (click)="AddExercice('friday');" color="primary">Add exercise</button>
 
                 </mat-expansion-panel>
 
@@ -242,7 +242,7 @@
                     <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
                         <div *ngFor='let item of GetDayArray("saturday")' class="exercice-expansion-panel">
                             
-                            <mat-expansion-panel class="mat-elevation-z8"  >
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
 
                                 <mat-expansion-panel-header color="primary">
                                     <mat-panel-title>
@@ -265,7 +265,7 @@
                         </div>
                     </div>
 
-                    <button mat-raised-button (click)="AddExercice('saturday');" color="primary">Add exercise</button>
+                    <button mat-raised-button type="button" (click)="AddExercice('saturday');" color="primary">Add exercise</button>
 
                 </mat-expansion-panel>
 
@@ -280,7 +280,7 @@
                     <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
                         <div *ngFor='let item of GetDayArray("sunday")' class="exercice-expansion-panel">
                             
-                            <mat-expansion-panel class="mat-elevation-z8"  >
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
 
                                 <mat-expansion-panel-header color="primary">
                                     <mat-panel-title>
@@ -303,7 +303,7 @@
                         </div>
                     </div>
 
-                    <button mat-raised-button (click)="AddExercice('sunday');" color="primary">Add exercise</button>
+                    <button mat-raised-button type="button" (click)="AddExercice('sunday');" color="primary">Add exercise</button>
 
                 </mat-expansion-panel>
 

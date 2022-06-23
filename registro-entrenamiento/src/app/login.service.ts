@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
-import { MatDialog, MatDialogModule } from '@angular/material';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CredentialErrorDialogComponent } from './dialogs/credential-error-dialog/credential-error-dialog.component';
 import { environment } from './../environments/environment'
 @Injectable({

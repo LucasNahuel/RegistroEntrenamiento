@@ -23,3 +23,59 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%;
   }
 }
+
+.mat-sidenav {
+  width: 300px;
+  padding: 1em;
+}
+
+mat-sidenav {
+  width: 300px;
+  padding: 1em;
+}
+
+.drawer-button:hover {
+  background-color: rgba(0,0,0,.04);
+}
+
+
+.training-list-item:hover{
+  background-color:  rgb(245 245 245);
+  cursor: pointer;
+}
+
+.training-list-item{
+  padding: 1em;
+}
+
+
+
+@media (min-width: 1000px){
+
+  .user-icon{
+    display: none;
+  }
+  
+}
+
+.toggle-icon{
+  display: flex;
+}
+
+
+@media (max-width: 1000px){
+
+  .user-name-widget{
+    display: none;
+  }
+
+  .toggle-icon{
+    display: none;
+  }
+  
+}
+
+
+.mat-button-wrapper{
+  margin:auto;
+}

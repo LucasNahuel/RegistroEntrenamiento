@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher, MatDialog } from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { LoginService } from '../login.service';
 import {MatButtonModule} from '@angular/material/button';
 import { CredentialErrorDialogComponent } from '../dialogs/credential-error-dialog/credential-error-dialog.component';
 import { JWTService } from '../jwt.service';
 import {Router} from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from 'environments/environment';
 
 
 
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
       //save the token
       this.jwtservice.setToken(response.value);
       this.router.navigate(['/trainlog']);
+      
     }
   }
 

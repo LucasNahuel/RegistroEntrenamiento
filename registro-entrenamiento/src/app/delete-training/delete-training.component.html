@@ -1,0 +1,72 @@
+<div style="display: flex;" class="mat-elevation-z8">
+    <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <app-app-toolbar style="width: 100%;">
+    </app-app-toolbar>
+</div>
+
+<mat-sidenav-container style="height: 93vh">
+
+    <mat-sidenav #drawer>
+        
+        <app-navigation-drawer></app-navigation-drawer>
+        
+    </mat-sidenav>
+
+
+    <mat-card style="margin: auto; margin-top: 2rem; max-width: 800px; padding: 0;" class="mat-elevation-z8" >
+
+        <mat-card-title [ngStyle]="{'background-color': primaryColor}" style=" padding: 1em; border-top-right-radius: 4px; border-top-left-radius: 4px; color: white;">
+            Trainings manager
+        </mat-card-title>
+
+        
+
+        <div style="padding: 2em; padding-top: 1em;" *ngIf="this.trainings != null && this.trainings.length > 0">
+
+            <div style="margin-bottom: 2em;">
+
+                Your current trainings:
+    
+            </div>
+    
+
+            <div *ngFor="let t of trainings" style="border-style: solid; border-width: 2px; border-color: rgba(0,0,0,.2); border-radius: 4px;">
+            
+                <div *ngIf="t != null" class="training-list-item" style="display:flex; flex-direction: row; align-items: center;">
+    
+                    <div style="display:block; white-space: nowrap; overflow: hidden; width: 50%;">{{t.name}}</div>
+        
+                    <div style="width: 50%; text-align:right;">
+    
+                        <button mat-icon-button mat-mini-fab color="warn" (click)="deleteTraining(t.id, trainings.indexOf(t))" style="margin-right: 1em;">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                
+                        <button mat-icon-button mat-mini-fab color="primary">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+    
+    
+                    </div>
+                    
+    
+                </div>
+    
+
+             </div>
+
+        </div>
+
+        <div style="padding: 2em; padding-top: 1em; text-align: center; color:#f7412d; font-weight: 500;" *ngIf="this.trainings == null || this.trainings.length == 0">
+            Not active training found
+        </div>
+
+        
+    </mat-card>
+
+
+</mat-sidenav-container>
+
+

@@ -8,3 +8,8 @@
     width: 100%;
     margin: 0 auto;
 }
+
+
+.mat-form-field{
+    margin-bottom: 1em;
+}

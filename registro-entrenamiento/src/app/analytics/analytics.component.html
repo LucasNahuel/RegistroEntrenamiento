@@ -1,0 +1,111 @@
+
+
+
+<div style="display: flex;">
+  <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
+      <mat-icon>menu</mat-icon>
+  </button>
+  <app-app-toolbar style="width: 100%;">
+  </app-app-toolbar>
+</div>
+
+<mat-sidenav-container style="height: 93vh">
+
+  <mat-sidenav #drawer>
+      
+      <app-navigation-drawer></app-navigation-drawer>
+      
+  </mat-sidenav>
+
+
+
+
+  <form [formGroup]="analyticsForm"  style="width:95%; max-width: 800px; margin:auto auto; margin-top: 2em; background-color:white; border-radius: 4px; overflow: hidden;" class="mat-elevation-z8">
+
+      <div [ngStyle]="{'background-color': primaryColor}" style="font-weight: 500px; font-size: 24px; color: white; padding: 1em;">
+        Analytics
+      </div>
+
+      <div *ngIf="trainings && trainings.length > 0">
+
+        <div style="display: flex; padding: 2em;" class="div-flex">
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Training</mat-label>
+            <mat-select [(value)]="selectedTrainig" formControlName="selectTrainingFormControl">
+              <mat-option *ngFor="let training of trainings; let i = index" [value]="i">
+                {{training.trainingName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+    
+    
+          <mat-form-field appearance="fill">
+            <mat-label>Exercise</mat-label>
+            <mat-select [(value)]="selectedExercise" formControlName="selectExerciseFormControl">
+              <mat-option *ngFor="let exercise of trainings[this.selectedTrainig].exercises" [value]="exercise.id">
+                {{exercise.exerciseName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+    
+          <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date">
+              <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+            <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+          </mat-form-field>
+  
+  
+        </div>
+        
+        
+  
+      
+  
+        
+        <div style="display:flex; align-items:end; flex-direction:column; padding: 2em;">
+  
+          <button mat-raised-button color="primary" (click)="getAnalytics()" [disabled]="!analyticsForm.valid">
+            Search
+          </button>
+  
+        </div>
+        
+  
+  
+  
+        <div style="display: block;" *ngIf="this.lineChartData[0]['data'].length > 0">
+          <canvas baseChart [datasets]="lineChartData" [type]="'line'" [options]="chartOptions" #baseChart="base-chart">
+          </canvas>
+        </div>
+
+      </div>
+
+      
+
+
+      <div style="text-align: center; font-weight: 500; color: #f7412d; padding: 2em;" *ngIf="this.message != ''">
+        {{this.message}}
+      </div>
+
+  </form>
+  
+
+
+
+
+
+</mat-sidenav-container>
+
+

@@ -5,6 +5,10 @@ import { RegisterComponent } from './register/register.component';
 import { TrainLogComponent} from './train-log/train-log.component';
 import { JwtAuthorizeGuardService } from './jwt-authorize-guard.service';
 import { CreateTrainingComponent } from './create-training/create-training.component';
+import { DeleteTrainingComponent } from './delete-training/delete-training.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { SearchTrainingComponent } from './search-training/search-training.component';
+import { DetailsTrainingComponent } from './details-training/details-training.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -12,6 +16,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'trainlog', component: TrainLogComponent, canActivate: [JwtAuthorizeGuardService]},
   { path: 'new-training', component: CreateTrainingComponent, canActivate: [JwtAuthorizeGuardService]},
+  { path: 'list-trainings', component: DeleteTrainingComponent, canActivate: [JwtAuthorizeGuardService]},
+  { path: 'analytics', component: AnalyticsComponent, canActivate: [JwtAuthorizeGuardService]},
+  { path: 'search-training', component: SearchTrainingComponent, canActivate: [JwtAuthorizeGuardService]},
+  {path: 'training-details/:id', component: DetailsTrainingComponent, canActivate: [JwtAuthorizeGuardService]}
 ];
 
 @NgModule({

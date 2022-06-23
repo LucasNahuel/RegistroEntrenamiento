@@ -1,0 +1,17 @@
+
+
+<mat-form-field appearance="fill" style="margin: auto auto; width: 100%; min-width: 300px;">
+    <mat-label>Training search</mat-label>
+    <input
+        matInput
+        type="text"
+        placeholder="Enter your search term..."
+        [value]="initialValue"
+        (input)="onInput($event)"
+        style="width: 100%;"        
+    />
+    <mat-error>
+    </mat-error>
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+

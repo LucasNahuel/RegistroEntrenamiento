@@ -17,7 +17,8 @@ import { RegisterComponent } from './register/register.component';
 import { JwtInterceptor } from './jwt-interceptor.service';
 import { TrainLogComponent } from './train-log/train-log.component';
 import { CredentialErrorDialogComponent } from './dialogs/credential-error-dialog/credential-error-dialog.component';
-import { MatDialogClose, MatDialogModule, MatToolbar } from '@angular/material';
+import { MatDialogClose, MatDialogModule } from '@angular/material/dialog';
+import { MatToolbar } from '@angular/material/toolbar';
 import { UsernameErrorDialogComponent } from './dialogs/username-error-dialog/username-error-dialog.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -33,58 +34,83 @@ import { RegistrationCompleteDialogComponent } from './dialogs/registration-comp
 import { CreateExerciceComponent } from './dialogs/create-exercice/create-exercice.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ExerciseLogComponent } from './exercise-log/exercise-log.component';
+import { DeleteTrainingComponent } from './delete-training/delete-training.component';
+import { NgChartsModule } from 'ng2-charts';
+import { SetLogComponent } from './set-log/set-log.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import {MatSelect, MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { InputDebouncedComponent } from './input-debounced/input-debounced.component';
+import { SearchTrainingComponent } from './search-training/search-training.component';
+import { DetailsTrainingComponent } from './details-training/details-training.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { RatingTrainingDialogComponent } from './dialogs/rating-training-dialog/rating-training-dialog.component';
+import { UserWidgetComponent } from './user-widget/user-widget.component';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    TrainLogComponent,
-    CredentialErrorDialogComponent,
-    UsernameErrorDialogComponent,
-    AppToolbarComponent,
-    CreateTrainingComponent,
-    NavigationDrawerComponent,
-    NewExerciseComponent,
-    RegistrationCompleteDialogComponent,
-    CreateExerciceComponent
-    
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule.forRoot([
-      { path: 'login', component: LoginComponent }
-    ]),
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatDialogModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatExpansionModule,
-    MatTableModule,
-    FormsModule,
-    MatGridListModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    DatePipe
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    CredentialErrorDialogComponent,
-    UsernameErrorDialogComponent,
-    RegistrationCompleteDialogComponent,
-    CreateExerciceComponent
-  ],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        TrainLogComponent,
+        CredentialErrorDialogComponent,
+        UsernameErrorDialogComponent,
+        AppToolbarComponent,
+        CreateTrainingComponent,
+        NavigationDrawerComponent,
+        NewExerciseComponent,
+        RegistrationCompleteDialogComponent,
+        CreateExerciceComponent,
+        ExerciseLogComponent,
+        DeleteTrainingComponent,
+        SetLogComponent,
+        AnalyticsComponent,
+        InputDebouncedComponent,
+        SearchTrainingComponent,
+        DetailsTrainingComponent,
+        RatingTrainingDialogComponent,
+        UserWidgetComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule.forRoot([
+            { path: 'login', component: LoginComponent }
+        ]),
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatCardModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatExpansionModule,
+        MatTableModule,
+        FormsModule,
+        MatGridListModule,
+        NgChartsModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSnackBarModule,
+        InfiniteScrollModule,
+        MatRippleModule
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        DatePipe
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
 

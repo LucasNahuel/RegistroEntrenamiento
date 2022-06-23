@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JWTService } from 'app/jwt.service';
 
 @Component({
   selector: 'app-app-toolbar',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public JWTservice: JWTService) { }
 
   ngOnInit() {
+    
   }
 
 }

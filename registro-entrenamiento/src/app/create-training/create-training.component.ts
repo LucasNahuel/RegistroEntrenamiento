@@ -1,7 +1,10 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { environment } from 'environments/environment';
 import { CreateTrainingService } from '../create-training.service';
 import { CreateExerciceComponent, Exercice } from '../dialogs/create-exercice/create-exercice.component';
 import { JWTService } from '../jwt.service';
@@ -16,7 +19,9 @@ export class CreateTrainingComponent implements OnInit {
 
   excercisesList: Array<any> = [];
 
-  constructor(public dialog: MatDialog, public createTrainingService: CreateTrainingService, public jwtService: JWTService) { }
+  primaryColor= environment.primaryColor;
+
+  constructor(public dialog: MatDialog, public createTrainingService: CreateTrainingService, public jwtService: JWTService, public router: Router,  private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -34,7 +39,7 @@ export class CreateTrainingComponent implements OnInit {
 
   Save():void{
 
-    this.createTrainingService.Save(this.jwtService.getUser(), this.createTrainingForm.get('title').value, this.excercisesList).subscribe(val => console.log(val));
+    this.createTrainingService.Save(this.jwtService.getUser(), this.createTrainingForm.get('title').value, this.excercisesList).subscribe(val => this.showSnackBar(val));
 
   }
 
@@ -60,6 +65,26 @@ export class CreateTrainingComponent implements OnInit {
     console.log(JSON.stringify(this.excercisesList));
   }
 
+  showSnackBar(message: any){
+
+    console.log(message.message);
+
+    let snackBarRef = this._snackBar.open(message.message);
+
+    snackBarRef.afterDismissed().subscribe(() =>{
+      //this.router.navigate(['/trainlog']);
+
+      console.log("done");
+    });
+
+    snackBarRef._dismissAfter(3000);
+
+    snackBarRef._open();
+
+
+    
+  }
+  
 
 }
 

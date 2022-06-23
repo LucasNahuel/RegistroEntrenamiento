@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'environments/environment';
 import { RegistrationCompleteDialogComponent } from '../dialogs/registration-complete-dialog/registration-complete-dialog.component';
 import { UsernameErrorDialogComponent } from '../dialogs/username-error-dialog/username-error-dialog.component';
 import { MyErrorStateMatcher } from '../login/login.component';
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit {
   emailVerif="";
   passwordMatch= false;
   emailMatch=false;
+  primaryColor= environment.primaryColor;
 
  constructor(private registerService: RegisterService, public dialog: MatDialog) { }
 

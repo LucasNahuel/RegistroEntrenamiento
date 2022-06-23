@@ -1,3 +1,7 @@
-<mat-toolbar color="primary" style="width: 100%;">
+<mat-toolbar color="primary" style="width: 100%; display: flex; justify-content: space-between;" class="mat-elevation-z8">
     <span>Training register</span>
+
+    <app-user-widget *ngIf="!this.JWTservice.isTokenExpired()">
+
+    </app-user-widget>
 </mat-toolbar>

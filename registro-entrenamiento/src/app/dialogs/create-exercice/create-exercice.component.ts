@@ -1,7 +1,8 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTable } from '@angular/material/table';
 
 
 
@@ -15,18 +16,19 @@ export class CreateExerciceComponent implements OnInit {
   
   constructor(
     public dialogRef: MatDialogRef<CreateExerciceComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Exercice) {
+    @Inject(MAT_DIALOG_DATA) public data: Exercice) 
+  {
 
-      console.log(JSON.stringify(data));
+    console.log(JSON.stringify(data));
       
-     }
+  }
 
   ngOnInit() {
   }
 
   public inputWeightField;
   public inputRepsField;
-  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
+  @ViewChild(MatTable) table: MatTable<any>;
   
   
 

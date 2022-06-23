@@ -1,0 +1,36 @@
+<div #toggleButton matRipple class="mat-elevation-z2" [ngStyle]="{'background-color': environment.secondaryColor}" style="user-select: none;cursor:pointer; border-radius: 24px; min-width: 40px; height:40px; padding: 0; display: flex; justify-content: center; align-items:center;" (click)="toggleUserMenu()">
+
+    <div style="display:flex; margin: 0.5em">
+
+        <div style="display: flex;" class="user-icon">
+            <mat-icon aria-hidden="false" style="margin:auto;">person</mat-icon>
+        </div>
+        
+    
+        <span class="user-name-widget" style="margin: 0.5em; font-size: 16px;">{{this.JWTservice.getUser()}}</span>
+
+        <div  *ngIf="!userMenuOpen" class="toggle-icon">
+            <mat-icon aria-hidden="false" style="margin:auto;">arrow_drop_down</mat-icon>
+        </div>
+
+        <div  *ngIf="userMenuOpen" class="toggle-icon">
+            <mat-icon aria-hidden="false" style="margin:auto;">arrow_drop_up</mat-icon>
+        </div>
+        
+
+    </div>
+
+</div>
+
+<div #menu class="mat-elevation-z8" style="background-color: white; border-radius: 4px; position:absolute; z-index: 9999; inset: 75px 10px auto auto; width:300px; color: black;" *ngIf="userMenuOpen">
+
+    <div class="drawer-link" style="padding-left: 1em; margin: 1em;" (click)="logout()">
+        <a style="width:100%; text-decoration:none; color: grey; cursor: pointer; font-size: 14px;">
+            <div style="display:flex;">
+                <mat-icon matListIcon style="margin:auto 0;">logout</mat-icon>
+                <p>Logout</p>
+            </div>
+        </a>
+    </div>
+
+</div>

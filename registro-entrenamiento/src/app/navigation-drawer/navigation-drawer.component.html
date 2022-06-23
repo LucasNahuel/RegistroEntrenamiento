@@ -1,6 +1,6 @@
 
 <div style="padding:10px">
-    <mat-accordion style="width:200px;">
+    <mat-accordion style="width:100%;">
 
         <div class="drawer-link" style="padding: 0 0;">
             <a [routerLink]="['/trainlog']" style="width:100%; text-decoration:none; color: grey">
@@ -22,7 +22,16 @@
                 
             </mat-expansion-panel-header>
 
-            <div style="padding: 0 0;">
+            <div style="padding: 0 0;" class="drawer-button">
+                <a [routerLink]="['/search-training']" style="width:100%; text-decoration:none; color: grey">
+                    <div style="display:flex;">
+                        <mat-icon matListIcon style="margin:auto 0;">search</mat-icon>
+                        <p>Search</p>
+                    </div>
+                </a>
+            </div>
+
+            <div style="padding: 0 0;" class="drawer-button">
                 <a [routerLink]="['/new-training']" style="width:100%; text-decoration:none; color: grey">
                     <div style="display:flex;">
                         <mat-icon matListIcon style="margin:auto 0;">add</mat-icon>
@@ -31,8 +40,8 @@
                 </a>
             </div>
 
-            <div style="padding: 0 0;">
-                <a [routerLink]="['/']" style="width:100%; text-decoration:none; color: grey">
+            <div style="padding: 0 0;" class="drawer-button">
+                <a [routerLink]="['/list-trainings']" style="width:100%; text-decoration:none; color: grey">
                     <div style="display:flex;">
                         <mat-icon matListIcon style="margin:auto 0;">delete</mat-icon>
                         <p>Delete one</p>
@@ -43,7 +52,7 @@
         </mat-expansion-panel>
 
         <div class="drawer-link" style="padding: 0 0;">
-            <a [routerLink]="['/']" style="width:100%; text-decoration:none; color: grey">
+            <a [routerLink]="['/analytics']" style="width:100%; text-decoration:none; color: grey">
                 <div style="display:flex;">
                     <mat-icon matListIcon style="margin:auto 0;">assessment</mat-icon>
                     <p>Analytics</p>

@@ -1,0 +1,347 @@
+<div style="display: flex;" >
+    <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <app-app-toolbar style="width: 100%;" class="mat-elevation-z8">
+    </app-app-toolbar>
+</div>
+
+<mat-sidenav-container style="height: 93vh">
+
+    <mat-sidenav #drawer>
+        
+        <app-navigation-drawer></app-navigation-drawer>
+        
+    </mat-sidenav>
+
+    <mat-card class="mat-elevation-z8" style="max-width: 800px; margin: 0 auto; margin-top: 2em; padding: 0; padding-bottom: 1em;">
+        <mat-card-title [ngStyle]="{'background-color': primaryColor}" style=" padding: 1em; border-top-right-radius: 4px; border-top-left-radius: 4px; color: white;">
+            Workout details
+        </mat-card-title>
+    
+
+        <form style=" padding: 2em; padding-top: 0; border-bottom: solid;border-color: rgba(0,0,0,.2); border-width: 1px;">
+
+            <div *ngIf="training" style="font-size: 24px; font-weight: 500; text-align: center;">{{training.trainingName}}</div>
+            <div *ngIf="training" style="font-size: 16px; font-weight: 400; text-align: center;">by {{training.creatorName}}</div>
+
+            <mat-card-subtitle style="padding-bottom: 1em; padding-top: 1em;">
+                Weekly exercise schedule:
+            </mat-card-subtitle>
+        
+        
+            <mat-accordion class="mat-elevation-z8" style="margin-top:1em;" multi>
+
+                <mat-expansion-panel [expanded]="true" *ngIf="GetDayArray(1)">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Monday
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+
+                    <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
+                        <div *ngFor='let item of GetDayArray(1)' class="exercice-expansion-panel">
+                            
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
+
+                                <mat-expansion-panel-header color="primary">
+                                    <mat-panel-title>
+                                        {{item.exerciseName}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <table style="text-align: center; margin: auto auto;">
+                                    <th>weight</th>
+                                    <th></th>
+                                    <th>reps</th>
+                                    <tr *ngFor="let item of item.sets">
+                                        <td>{{item.weight}}</td>
+                                        <td>x</td>
+                                        <td>{{item.reps}}</td>
+                                    </tr>
+                                </table>
+
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="true" *ngIf="GetDayArray(2)">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Tuesday
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
+                        <div *ngFor='let item of GetDayArray(2)' class="exercice-expansion-panel">
+                            
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;"  >
+
+                                <mat-expansion-panel-header color="primary">
+                                    <mat-panel-title>
+                                        {{item.exerciseName}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <table style="text-align: center; margin: auto auto;">
+                                    <th>weight</th>
+                                    <th></th>
+                                    <th>reps</th>
+                                    <tr *ngFor="let item of item.sets">
+                                        <td>{{item.weight}}</td>
+                                        <td>x</td>
+                                        <td>{{item.reps}}</td>
+                                    </tr>
+                                </table>
+
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="true" *ngIf="GetDayArray(3)">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Wednesday
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
+                        <div *ngFor='let item of GetDayArray(3)' class="exercice-expansion-panel">
+                            
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
+
+                                <mat-expansion-panel-header color="primary">
+                                    <mat-panel-title>
+                                        {{item.exerciseName}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <table style="text-align: center; margin: auto auto;">
+                                    <th>weight</th>
+                                    <th></th>
+                                    <th>reps</th>
+                                    <tr *ngFor="let item of item.sets">
+                                        <td>{{item.weight}}</td>
+                                        <td>x</td>
+                                        <td>{{item.reps}}</td>
+                                    </tr>
+                                </table>
+
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="true" *ngIf="GetDayArray(4)">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Thursday
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
+                        <div *ngFor='let item of GetDayArray(4)' class="exercice-expansion-panel">
+                            
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;"  >
+
+                                <mat-expansion-panel-header color="primary">
+                                    <mat-panel-title>
+                                        {{item.exerciseName}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <table style="text-align: center; margin: auto auto;">
+                                    <th>weight</th>
+                                    <th></th>
+                                    <th>reps</th>
+                                    <tr *ngFor="let item of item.sets">
+                                        <td>{{item.weight}}</td>
+                                        <td>x</td>
+                                        <td>{{item.reps}}</td>
+                                    </tr>
+                                </table>
+
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="true" *ngIf="GetDayArray(5)">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Friday
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
+                        <div *ngFor='let item of GetDayArray(5)' class="exercice-expansion-panel">
+                            
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;"  >
+
+                                <mat-expansion-panel-header color="primary">
+                                    <mat-panel-title>
+                                        {{item.exerciseName}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <table style="text-align: center; margin: auto auto;">
+                                    <th>weight</th>
+                                    <th></th>
+                                    <th>reps</th>
+                                    <tr *ngFor="let item of item.sets">
+                                        <td>{{item.weight}}</td>
+                                        <td>x</td>
+                                        <td>{{item.reps}}</td>
+                                    </tr>
+                                </table>
+
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="true" *ngIf="GetDayArray(6)">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Saturday
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
+                        <div *ngFor='let item of GetDayArray(6)' class="exercice-expansion-panel">
+                            
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
+
+                                <mat-expansion-panel-header color="primary">
+                                    <mat-panel-title>
+                                        {{item.exerciseName}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <table style="text-align: center; margin: auto auto;">
+                                    <th>weight</th>
+                                    <th></th>
+                                    <th>reps</th>
+                                    <tr *ngFor="let item of item.sets">
+                                        <td>{{item.weight}}</td>
+                                        <td>x</td>
+                                        <td>{{item.reps}}</td>
+                                    </tr>
+                                </table>
+
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="true" *ngIf="GetDayArray(7)">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Sunday
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div style="display:flex; flex-direction: row; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;" >
+                        <div *ngFor='let item of GetDayArray(7)' class="exercice-expansion-panel">
+                            
+                            <mat-expansion-panel style="border-style: solid; border-radius: 4px; border-color: rgba(0,0,0,.2); border-width: 1px;" >
+
+                                <mat-expansion-panel-header color="primary">
+                                    <mat-panel-title>
+                                        {{item.exerciseName}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <table style="text-align: center; margin: auto auto;">
+                                    <th>weight</th>
+                                    <th></th>
+                                    <th>reps</th>
+                                    <tr *ngFor="let item of item.sets">
+                                        <td>{{item.weight}}</td>
+                                        <td>x</td>
+                                        <td>{{item.reps}}</td>
+                                    </tr>
+                                </table>
+
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+
+            </mat-accordion>
+
+
+            <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 16px;">
+                <button mat-raised-button color="accent" (click)="rateTraining()" style="margin-right: 1em;">Rate</button>
+                <button mat-raised-button color="accent" (click)="SaveTraining()">Save</button>
+            </div>
+
+        </form>
+
+
+        <div *ngIf="comments && comments.length > 0" style="margin:2em;" infinite-scroll (scrolled)="loadComments($event)">
+
+            Comments:
+
+            <div *ngFor="let item of comments" style="margin-top: 1em; border-top: solid; border-color: rgba(0,0,0,.2); border-width: 1px;">
+
+                <div style="margin-top: 1em; display: flex; justify-content: space-between; align-items: center; flex-direction: row;">
+                    
+                    <div style="color: rgba(0,0,0,.50)">
+                        {{item.userFK.user}}
+                    </div>
+                    
+                    <div>
+                        <mat-icon aria-hidden="false" *ngFor="let item of [].constructor(item.rating); let i = index" color="accent">star</mat-icon>
+                    </div>
+                    
+                </div>
+
+                
+
+                <div>
+                    {{item.comment}}
+                </div>
+
+                
+            </div>
+
+
+        </div>
+
+
+
+
+    </mat-card>
+
+
+</mat-sidenav-container>
+
+
+

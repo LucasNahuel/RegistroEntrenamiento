@@ -64,7 +64,14 @@ export class JWTService {
     if (expiryTime) {
       return ((1000 * expiryTime) - (new Date()).getTime()) < 5000;
     } else {
-    return false;
+    return true;
     }
   }
+
+
+  removeToken(){
+    this.jwtToken = null;
+    this.decodedToken = null;
+  }
+
 }

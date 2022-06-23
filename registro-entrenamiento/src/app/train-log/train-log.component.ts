@@ -4,6 +4,9 @@ import { JWTService } from '../jwt.service';
 import { TrainingLogService } from '../training-log.service';
 import { DatePipe } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { JsonpClientBackend } from '@angular/common/http';
+import { environment } from 'environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-train-log',
@@ -12,11 +15,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 })
 export class TrainLogComponent implements OnInit {
 
-  training;
 
   date :string= this.FormatDate(new Date());
 
   dateOffset :number = 0;
+
+  trainingArray :Array<any> = ["no training"];
+
+  
+  
+  primaryColor= environment.primaryColor;
 
   constructor(private JWTservice: JWTService, private trainingLogService: TrainingLogService, private datepipe: DatePipe) { }
 
@@ -28,12 +36,23 @@ export class TrainLogComponent implements OnInit {
   }
 
   setTraining(result: any){
-    this.training = result;
-    console.log(this.training);
+
+    var jsonresult  = JSON.stringify(result);
+
+    this.trainingArray = JSON.parse(jsonresult);
+
+    console.log(this.trainingArray);
+
   }
 
   FormatDate(date :Date) :string{
-    return this.datepipe.transform(date, 'd-M-yyyy');
+
+
+    let formattedDate = date.getDate().toString()+"-"+(date.getMonth()+1).toString()+"-"+date.getFullYear().toString()
+
+    return formattedDate;
+
+
   }
 
   ChangeDate() :void{
@@ -46,7 +65,7 @@ export class TrainLogComponent implements OnInit {
 
     this.date = this.FormatDate(newDate);
 
-    
+    this.trainingLogService.GetTraining(this.JWTservice.getUser(), this.date).subscribe(val => this.setTraining(val))
   }
 
   DateBack(){
@@ -60,4 +79,33 @@ export class TrainLogComponent implements OnInit {
 
     this.ChangeDate();
   }
+
+
+
+  
+}
+
+interface Training{
+
+  trainingName:string;
+  exercises:Array<Exercise>;
+
+
+}
+
+interface Exercise{
+
+  exerciseName:string;
+  sets:Array<ExerciseSet>;
+  
+
+}
+
+interface ExerciseSet{
+
+
+  reps:number;
+  weight:number;
+  
+
 }

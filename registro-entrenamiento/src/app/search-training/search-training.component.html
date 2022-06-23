@@ -1,0 +1,63 @@
+<div style="display: flex;" >
+    <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <app-app-toolbar style="width: 100%;" class="mat-elevation-z8">
+    </app-app-toolbar>
+</div>
+
+<mat-sidenav-container style="height:93vh">
+
+    <mat-sidenav #drawer>
+        
+        <app-navigation-drawer></app-navigation-drawer>
+        
+    </mat-sidenav>
+    
+    <mat-card style="margin: auto auto; max-width: 800px; display: flex; justify-content: center; flex-direction: column; margin-top: 2em;" class="mat-elevation-z8">
+
+        <app-input-debounced (textChange)="onTextChange($event)" style="width: 100%; display: flex;"></app-input-debounced>
+
+
+        <ng-container *ngIf="(results$ | async) as results" >
+            <div *ngIf="results.length > 0; else noResults" style="border-style: solid; border-width: 2px; border-color: rgba(0,0,0,.2); border-radius: 4px;" infinite-scroll (scrolled)="onScrollDown($event)">
+                
+                <div *ngFor="let item of results" (click)="this.search(item.id)" class="training-list-item" style="display: flex; flex-direction: row; align-items:center; justify-content: space-between;">
+                    
+                    <div>
+
+                        <span style="font-weight: 500;">{{item.name}}</span><span style="font-weight: 400;"> by {{item.creatorFK.user}}</span>
+
+                    </div>
+
+
+                    
+                    <div style="display: flex; justify-content: end; align-items: center;" *ngIf="item.noOfRatings > 0">
+                        
+                        <mat-icon aria-hidden="false" *ngFor="let item of [].constructor(item.rating); let i = index" color="accent">star</mat-icon>
+
+                        <span >(out of {{item.noOfRatings}} votes)</span>
+
+                    </div>
+                        
+                        
+                </div>
+
+                
+            </div>
+
+            
+
+
+
+
+            <ng-template #noResults >
+
+                <span style="text-align:center; font-weight: 500; color: #f7412d;">No results</span>
+                
+            </ng-template>
+        </ng-container>
+
+    </mat-card>
+
+</mat-sidenav-container>
