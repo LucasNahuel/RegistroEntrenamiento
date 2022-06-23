@@ -5,6 +5,8 @@ import { environment } from 'environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class TrainingLogService {
 
   constructor(private http: HttpClient) {
@@ -144,4 +146,14 @@ export class TrainingLogService {
 
   }
   
+  DeleteRating(ratingId: number){
+
+    console.log(ratingId);
+
+    let params = new HttpParams();
+
+    params = params.append('ratingId', ratingId);
+
+    return this.http.post<any>(environment.apiUrl+"deleteRating", params)
+  }
 }

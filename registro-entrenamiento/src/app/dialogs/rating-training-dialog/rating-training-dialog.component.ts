@@ -100,4 +100,9 @@ export class RatingTrainingDialogComponent implements OnInit {
 
   }
 
+  deleteRating(){
+
+    this.trainingService.DeleteRating(this.data.id).subscribe(val => this.showSnackBar(val));
+  }
+
 }

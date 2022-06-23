@@ -23,10 +23,11 @@
     
     </div>
 
-    <div style="display: flex; justify-content:end; ">
+    <div style="display: flex; justify-content:end;">
+        <button *ngIf="this.data.id != null" mat-raised-button color="accent" [disabled]="!rateTrainingForm.valid" (click)="deleteRating()" style="margin-right: 1em;">Delete</button>
         <button mat-raised-button color="accent" [disabled]="!rateTrainingForm.valid" (click)="submitRating()">Save</button>
     </div>
 
-    
+
 
 </div>
