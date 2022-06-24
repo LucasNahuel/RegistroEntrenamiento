@@ -22,6 +22,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .exercice-expansion-panel {
     width: 100%;
   }
+
+  .number-rates{
+    display:none;
+  }
 }
 
 .mat-sidenav {
