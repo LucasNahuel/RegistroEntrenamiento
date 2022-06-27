@@ -9,6 +9,7 @@ import { DeleteTrainingComponent } from './delete-training/delete-training.compo
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { SearchTrainingComponent } from './search-training/search-training.component';
 import { DetailsTrainingComponent } from './details-training/details-training.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'list-trainings', component: DeleteTrainingComponent, canActivate: [JwtAuthorizeGuardService]},
   { path: 'analytics', component: AnalyticsComponent, canActivate: [JwtAuthorizeGuardService]},
   { path: 'search-training', component: SearchTrainingComponent, canActivate: [JwtAuthorizeGuardService]},
-  {path: 'training-details/:id', component: DetailsTrainingComponent, canActivate: [JwtAuthorizeGuardService]}
+  {path: 'training-details/:id', component: DetailsTrainingComponent, canActivate: [JwtAuthorizeGuardService]},
+  { path: 'user-profile', component: UserProfileComponent, canActivate: [JwtAuthorizeGuardService]},
 ];
 
 @NgModule({

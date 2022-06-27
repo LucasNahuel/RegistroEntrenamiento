@@ -49,6 +49,7 @@ import { DetailsTrainingComponent } from './details-training/details-training.co
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { RatingTrainingDialogComponent } from './dialogs/rating-training-dialog/rating-training-dialog.component';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { UserWidgetComponent } from './user-widget/user-widget.component';
         DetailsTrainingComponent,
         RatingTrainingDialogComponent,
         UserWidgetComponent,
+        UserProfileComponent,
     ],
     imports: [
         BrowserModule,

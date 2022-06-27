@@ -23,7 +23,7 @@
             
                 <mat-form-field class="passwordField">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" id="password" matInput formControlName="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password" (change)="this.registerForm.get('passwordVerifFormControl').updateValueAndValidity();">
+                    <input matInput type="password" id="password" matInput formControlName="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password" (input)="this.registerForm.get('passwordVerifFormControl').updateValueAndValidity();">
                     <mat-error *ngIf="registerForm.get('passwordFormControl').hasError('required')">
                         Password is <strong>required</strong>
                     </mat-error>
@@ -44,7 +44,7 @@
 
                 <mat-form-field class="emailField">
                     <mat-label>Email</mat-label>
-                    <input matInput type="email" id="email" matInput formControlName="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="email" (change)="this.registerForm.get('emailVerifFormControl').updateValueAndValidity();">
+                    <input matInput type="email" id="email" matInput formControlName="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="email" (input)="this.registerForm.get('emailVerifFormControl').updateValueAndValidity();">
                     <mat-error *ngIf="registerForm.get('emailFormControl').hasError('required')">
                         Password is <strong>required</strong>
                     </mat-error>
@@ -68,7 +68,7 @@
             
                 </mat-form-field>
 
-                <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid" style="margin: 0 40%;">Register</button>                    
+                <button mat-raised-button color="accent" type="submit" [disabled]="!registerForm.valid" style="margin: 0 40%;">Register</button>                    
             
             </form>
         </mat-card-content>

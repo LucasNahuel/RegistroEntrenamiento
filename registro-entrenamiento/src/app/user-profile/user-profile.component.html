@@ -1,0 +1,119 @@
+<div style="display: flex;" class="mat-elevation-z8">
+    <button mat-flat-button (click)="drawer.toggle()" color="primary" style="border-radius: 0; border-style: none;">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <app-app-toolbar style="width: 100%;">
+    </app-app-toolbar>
+</div>
+
+<mat-sidenav-container style="height: 100%">
+
+    <mat-sidenav #drawer >
+        
+        <app-navigation-drawer></app-navigation-drawer>
+        
+    </mat-sidenav>
+
+
+    <mat-card style="width:100%; max-width: 800px; margin: auto auto; margin-top: 2em; padding: 0;" class="mat-elevation-z8" >
+
+        <mat-card-title style="margin: 0px; padding: 1em; border-top-left-radius: 4px; border-top-right-radius:4px; color: white;" [ngStyle]="{'background-color': primaryColor}">
+            Profile settings
+        </mat-card-title>
+
+        <form [formGroup]="userUpdateForm" style="margin: 2em; padding-bottom: 2em;" (ngSubmit)="updateUser()">
+
+            <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
+                <mat-label>Username</mat-label>
+                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="userName" (input)="userNameTaken()">
+                <mat-error *ngIf="userUpdateForm.get('userName').hasError('usernameTaken')">Username is already taken</mat-error>
+            </mat-form-field>
+
+            
+
+
+            <div style="display: flex; align-items: center; flex-direction:row; width: 100%;">
+
+                <div style="display: flex; align-items:center; flex-direction: row; color: grey;">
+
+                    Password
+
+                    <mat-icon style="margin:1em;" >key</mat-icon>
+
+                </div>
+
+                <mat-divider style="position: relative; border-width: 2px;"></mat-divider>
+
+            </div>
+
+            <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
+                <mat-label>Actual password</mat-label>
+                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="actualPassword" type="password" (input)="this.actualPasswordIncorrect()">
+                <mat-error *ngIf="userUpdateForm.get('actualPassword').hasError('actualPasswordIncorrect')">wrong password</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
+                <mat-label>New password</mat-label>
+                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="newPassword" (input)="this.userUpdateForm.get('newPasswordConfirm').updateValueAndValidity();" type="password">
+                <mat-error *ngIf="userUpdateForm.get('newPassword').hasError('passwordValidator')">passwords don't match</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
+                <mat-label>New password (confirm)</mat-label>
+                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="newPasswordConfirm" (input)="this.userUpdateForm.get('newPassword').updateValueAndValidity();" type="password">
+                <mat-error *ngIf="userUpdateForm.get('newPasswordConfirm').hasError('passwordValidator')">passwords don't match</mat-error>
+            </mat-form-field>
+
+
+            <div style="display: flex; align-items: center; flex-direction:row; width: 100%;">
+
+                <div style="display: flex; align-items:center; flex-direction: row; color: grey;">
+
+                    Email
+
+                    <mat-icon style="margin:1em;" >email</mat-icon>
+
+                </div>
+
+                <mat-divider style="position: relative; border-width: 2px;"></mat-divider>
+
+            </div>
+
+
+            <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
+                <mat-label>Actual email</mat-label>
+                <input matInput style="height: 100%;" cdkTextareaAutosize [readonly]="true" formControlName="actualEmail">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
+                <mat-label>New email</mat-label>
+                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="email" (input)="this.userUpdateForm.get('emailConfirm').updateValueAndValidity();" type="email">
+                <mat-error *ngIf="userUpdateForm.get('email').hasError('emailValidator')"> emails don't match</mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
+                <mat-label>New email (confirm)</mat-label>
+                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="emailConfirm" (input)="this.userUpdateForm.get('email').updateValueAndValidity();" type="email">
+                <mat-error *ngIf="userUpdateForm.get('emailConfirm').hasError('emailValidator')"> emails don't match</mat-error>
+            </mat-form-field>
+
+
+
+            <div style="display:flex; flex-direction:row; justify-content:end;">
+                <button mat-raised-button color="accent" type="submit" [disabled]="!userUpdateForm.valid">Save</button>
+            </div>
+             
+
+
+        </form>
+
+
+    </mat-card>
+
+
+
+
+
+</mat-sidenav-container>

@@ -24,6 +24,15 @@
 
 <div #menu class="mat-elevation-z8" style="background-color: white; border-radius: 4px; position:absolute; z-index: 9999; inset: 75px 10px auto auto; width:300px; color: black;" *ngIf="userMenuOpen">
 
+    <div class="drawer-link" style="padding-left: 1em; margin: 1em;">
+        <a style="width:100%; text-decoration:none; color: grey; cursor: pointer; font-size: 14px;" [routerLink]="['/user-profile']">
+            <div style="display:flex;">
+                <mat-icon matListIcon style="margin:auto 0;">person</mat-icon>
+                <p>Profile</p>
+            </div>
+        </a>
+    </div>
+
     <div class="drawer-link" style="padding-left: 1em; margin: 1em;" (click)="logout()">
         <a style="width:100%; text-decoration:none; color: grey; cursor: pointer; font-size: 14px;">
             <div style="display:flex;">
