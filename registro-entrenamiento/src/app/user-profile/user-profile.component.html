@@ -25,8 +25,10 @@
 
             <mat-form-field appearance="fill" style="height: 100%; width: 100%;"  >
                 <mat-label>Username</mat-label>
-                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="userName" (input)="userNameTaken()">
-                <mat-error *ngIf="userUpdateForm.get('userName').hasError('usernameTaken')">Username is already taken</mat-error>
+                <input matInput style="height: 100%;" cdkTextareaAutosize formControlName="userName">
+                <mat-error *ngIf="userUpdateForm.get('userName').hasError('usernameAlreadyExists')">
+                    Username is already used
+                </mat-error>
             </mat-form-field>
 
             

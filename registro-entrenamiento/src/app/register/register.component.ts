@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { JWTService } from 'app/jwt.service';
+import { UserService } from 'app/user.service';
 import { environment } from 'environments/environment';
 import { RegistrationCompleteDialogComponent } from '../dialogs/registration-complete-dialog/registration-complete-dialog.component';
 import { UsernameErrorDialogComponent } from '../dialogs/username-error-dialog/username-error-dialog.component';
 import { MyErrorStateMatcher } from '../login/login.component';
 import { RegisterService } from '../register.service';
+import { UsernameValidator } from 'app/username-validator';
 
 @Component({
   selector: 'app-register',
@@ -23,14 +26,15 @@ export class RegisterComponent implements OnInit {
   emailMatch=false;
   primaryColor= environment.primaryColor;
 
- constructor(private registerService: RegisterService, public dialog: MatDialog) { }
+constructor(private registerService: RegisterService, public dialog: MatDialog,  private userService: UserService, private jwtService: JWTService) { }
 
  ngOnInit() {
  }
  registerForm = new FormGroup({
- userFormControl : new FormControl('', [
-   Validators.required,
- ]),
+ userFormControl : new FormControl('', 
+   [Validators.required],
+   [UsernameValidator.createValidator(this.userService)]
+  ),
 
  passwordFormControl : new FormControl('', [
    Validators.required,
@@ -62,6 +66,8 @@ export class RegisterComponent implements OnInit {
    this.registerService.Register(this.user, this.password, this.email).subscribe(val => this.registerResponse(val));
  
  }
+
+
 
 
  //this is a custom validator for checking if password matches password

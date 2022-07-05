@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JWTService } from 'app/jwt.service';
 import { MyErrorStateMatcher } from 'app/login/login.component';
 import { UserService } from 'app/user.service';
+import { UsernameValidator } from 'app/username-validator';
 import { environment } from 'environments/environment';
 
 @Component({
@@ -34,9 +35,10 @@ export class UserProfileComponent implements OnInit {
     newPasswordConfirm: new FormControl('', [
       this.passwordValidator,
     ]),
-    userName : new FormControl([],
-      Validators.required,
-      ),
+    userName : new FormControl('', 
+    [Validators.required],
+    [UsernameValidator.createValidator(this.userService)]
+    ),
     actualEmail:new FormControl(),
     email: new FormControl([],
       this.emailValidator),

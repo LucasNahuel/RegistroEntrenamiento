@@ -1,6 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +26,7 @@ export class UserService {
   }
 
   getUserByName(userName:string){
-
-    return this.http.get(environment.apiUrl+"getUserByName/"+userName);
+    return this.http.get<boolean>(environment.apiUrl+"getUserByName/"+userName);
   }
 
 

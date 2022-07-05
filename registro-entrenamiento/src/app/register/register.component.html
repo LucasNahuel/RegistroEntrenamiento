@@ -14,9 +14,12 @@
             <form [formGroup]="registerForm" (ngSubmit)="register()" style="padding: 2em; padding-top: 1em;">
                 <mat-form-field class="userField" >
                     <mat-label>User</mat-label>
-                    <input matInput formControlName="userFormControl" [errorStateMatcher]="matcher" id="user" [(ngModel)]="user">
+                    <input matInput formControlName="userFormControl" [errorStateMatcher]="matcher" id="user" [(ngModel)]="user" >
                     <mat-error *ngIf="registerForm.get('userFormControl').hasError('required')">
                         Username is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('userFormControl').hasError('usernameAlreadyExists')">
+                        Username is already used
                     </mat-error>
             
                 </mat-form-field>
