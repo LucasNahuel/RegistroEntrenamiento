@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit {
 
     }else{
       //save the token
+      console.log(response);
       this.jwtservice.setToken(response.value);
       this.router.navigate(['/trainlog']);
       

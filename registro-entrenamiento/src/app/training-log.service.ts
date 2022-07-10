@@ -20,7 +20,7 @@ export class TrainingLogService {
     params = params.append('date', date);
 
 
-    return this.http.post<any>(environment.apiUrl+"getTraining", params);
+    return this.http.get<any>(environment.apiUrl+"getTraining", {params});
   }
 
   SaveSet(user:string, setFk:number, date:string, reps:number, weight:number): any{
