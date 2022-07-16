@@ -13,6 +13,10 @@ export class TrainingLogService {
 
   }
 
+
+
+  
+
   GetTraining(user: string, date: string): any{
     let params = new HttpParams();
     
@@ -22,6 +26,9 @@ export class TrainingLogService {
 
     return this.http.get<any>(environment.apiUrl+"getTraining", {params});
   }
+
+
+
 
   SaveSet(user:string, setFk:number, date:string, reps:number, weight:number): any{
 

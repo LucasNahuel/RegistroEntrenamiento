@@ -4,10 +4,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginService } from '../login.service';
 import {MatButtonModule} from '@angular/material/button';
-import { CredentialErrorDialogComponent } from '../dialogs/credential-error-dialog/credential-error-dialog.component';
 import { JWTService } from '../jwt.service';
 import {Router} from '@angular/router';
 import { environment } from 'environments/environment';
+import { ErrorDialogComponent } from 'app/dialogs/error-dialog/error-dialog.component';
 
 
 
@@ -56,23 +56,35 @@ export class LoginComponent implements OnInit {
   
   Login(): void{
 
-    this.loginService.Login(this.user, this.password).subscribe(val => this.LoginResponse(val));
+    this.loginService.Login(this.user, this.password).subscribe(val => this.LoginResponse(val), err => { 
+
+      if (err.status == 401){
+
+        let credentialsError = this.dialog.open(ErrorDialogComponent);
+
+        credentialsError.componentInstance.errorMessage = "Wrong user or password. Please, try again.";
+
+        this.loginForm.reset();
+
+      }else{
+
+        let credentialsError = this.dialog.open(ErrorDialogComponent);
+
+        credentialsError.componentInstance.errorMessage = "Something went wrong, please tray again later.";
+
+      }
+
+    });
 
 
   }
 
   LoginResponse(response): void{
-    if(response.value == "invalid credentials"){
 
-      let credentialsError = this.dialog.open(CredentialErrorDialogComponent);
 
-    }else{
-      //save the token
-      console.log(response);
       this.jwtservice.setToken(response.value);
       this.router.navigate(['/trainlog']);
-      
-    }
+    
   }
 
 

@@ -5,7 +5,6 @@ import { JWTService } from 'app/jwt.service';
 import { UserService } from 'app/user.service';
 import { environment } from 'environments/environment';
 import { RegistrationCompleteDialogComponent } from '../dialogs/registration-complete-dialog/registration-complete-dialog.component';
-import { UsernameErrorDialogComponent } from '../dialogs/username-error-dialog/username-error-dialog.component';
 import { MyErrorStateMatcher } from '../login/login.component';
 import { RegisterService } from '../register.service';
 import { UsernameValidator } from 'app/username-validator';
@@ -106,18 +105,9 @@ constructor(private registerService: RegisterService, public dialog: MatDialog, 
   }
 
   registerResponse(response):void{
-    if(response.value == "username used"){
-      
-      let usernameError = this.dialog.open(UsernameErrorDialogComponent);
-
-      this.user="";
-
-    }else{
-      let registrationCompleteDialog = this.dialog.open(RegistrationCompleteDialogComponent);
-    }
-
     
-
+      let registrationCompleteDialog = this.dialog.open(RegistrationCompleteDialogComponent);
+    
   }
 
 

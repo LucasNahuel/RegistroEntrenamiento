@@ -16,10 +16,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import { RegisterComponent } from './register/register.component';
 import { JwtInterceptor } from './jwt-interceptor.service';
 import { TrainLogComponent } from './train-log/train-log.component';
-import { CredentialErrorDialogComponent } from './dialogs/credential-error-dialog/credential-error-dialog.component';
 import { MatDialogClose, MatDialogModule } from '@angular/material/dialog';
 import { MatToolbar } from '@angular/material/toolbar';
-import { UsernameErrorDialogComponent } from './dialogs/username-error-dialog/username-error-dialog.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { CreateTrainingComponent } from './create-training/create-training.component';
@@ -50,6 +48,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { RatingTrainingDialogComponent } from './dialogs/rating-training-dialog/rating-training-dialog.component';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
 
 
 @NgModule({
@@ -58,8 +57,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
         LoginComponent,
         RegisterComponent,
         TrainLogComponent,
-        CredentialErrorDialogComponent,
-        UsernameErrorDialogComponent,
         AppToolbarComponent,
         CreateTrainingComponent,
         NavigationDrawerComponent,
@@ -76,6 +73,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
         RatingTrainingDialogComponent,
         UserWidgetComponent,
         UserProfileComponent,
+        ErrorDialogComponent,
     ],
     imports: [
         BrowserModule,

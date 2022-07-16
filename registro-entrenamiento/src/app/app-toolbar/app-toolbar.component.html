@@ -1,7 +1,70 @@
-<mat-toolbar color="primary" style="width: 100%; display: flex; justify-content: space-between;" class="mat-elevation-z8">
-    <span>Training register</span>
+<mat-toolbar color="primary"  >
+    <mat-toolbar-row style="width: 100%; display: flex; justify-content: space-between;">
 
-    <app-user-widget *ngIf="!this.JWTservice.isTokenExpired()">
+        <span>Training register</span>
 
-    </app-user-widget>
+
+
+        <div class="toolbarNavigation" *ngIf="!this.JWTservice.isTokenExpired()">
+
+            <a class="toolbarLink" [routerLink]="['/trainlog']" style="padding: 0em 1em; display: flex; flex-direction: row; align-items: center; font-size:16px; text-decoration:none; color: white">
+                
+                <mat-icon matListIcon style="margin:auto 0;">book</mat-icon>
+                <p>Register</p>
+                
+            </a>
+
+            <a class="toolbarLink" style="padding: 0em 1em; display: flex; flex-direction: row; align-items: center; font-size:16px; text-decoration:none; color: white">
+                <div class="workoutNavigationToggle" style="display:flex;" #toggleButton (click)="toggleUserMenu()">
+                    <mat-icon matListIcon style="margin:auto 0;">fitness_center</mat-icon>
+                    <p>Workouts</p>
+                </div>
+
+                <div #menu style="position:absolute; background-color: white; margin-top: 300px; z-index: 9999; border-radius: 4px; padding: 1em;" class="mat-elevation-z8" *ngIf="userMenuOpen">
+
+                    <div style="padding: 0 1em;" class="drawer-button">
+                        <a [routerLink]="['/search-training']" style="width:100%; text-decoration:none; color: grey">
+                            <div style="display:flex;">
+                                <mat-icon matListIcon style="margin:auto 0;">search</mat-icon>
+                                <p>Search</p>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div style="padding: 0 1em;" class="drawer-button">
+                        <a [routerLink]="['/new-training']" style="width:100%; text-decoration:none; color: grey">
+                            <div style="display:flex;">
+                                <mat-icon matListIcon style="margin:auto 0;">add</mat-icon>
+                                <p>Create new</p>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div style="padding: 0 1em;" class="drawer-button">
+                        <a [routerLink]="['/list-trainings']" style="width:100%; text-decoration:none; color: grey">
+                            <div style="display:flex;">
+                                <mat-icon matListIcon style="margin:auto 0;">delete</mat-icon>
+                                <p>Delete one</p>
+                            </div>
+                        </a>
+                    </div>
+                
+                </div>
+            </a>
+
+            <a class="toolbarLink" [routerLink]="['/analytics']" style="padding: 0em 1em; display: flex; flex-direction: row; align-items: center; font-size:16px; text-decoration:none; color: white">
+                
+                <mat-icon matListIcon style="margin:auto 0;">assessment</mat-icon>
+                <p>Analytics</p>
+            </a>
+
+        </div>
+
+        <app-user-widget *ngIf="!this.JWTservice.isTokenExpired()">
+
+        </app-user-widget>
+
+    </mat-toolbar-row >
+
+    
 </mat-toolbar>
