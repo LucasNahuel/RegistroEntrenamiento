@@ -65,7 +65,7 @@ export class TrainLogComponent implements OnInit {
 
     this.date = this.FormatDate(newDate);
 
-    this.trainingLogService.GetTraining(this.JWTservice.getUser(), this.date).subscribe(val => this.setTraining(val))
+    this.trainingLogService.GetTraining(this.JWTservice.getUser(), this.date).subscribe(val => this.setTraining(val));
   }
 
   DateBack(){

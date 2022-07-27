@@ -32,12 +32,14 @@ export class DetailsTrainingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.GetTraining(Number(this.route.snapshot.paramMap.get('id')));
+    console.log(this.route.snapshot.paramMap.get('id'));
+
+    this.GetTraining(this.route.snapshot.paramMap.get('id'));
 
   }
 
 
-  GetTraining(id: number){
+  GetTraining(id){
 
 
     this.trainingService.GetTrainingsById(id).subscribe(val => this.LoadTraining(val));
@@ -182,7 +184,12 @@ export class DetailsTrainingComponent implements OnInit {
 
   SaveTraining(){
 
-    this.trainingService.SaveTraining(this.training.id, this.JWTservice.getUser()).subscribe(val => this.showSnackBar(val));
+    console.log(this.training);
+
+    this.trainingService.SaveTraining(this.route.snapshot.paramMap.get('id'), this.JWTservice.getUser()).subscribe(val => this.showSnackBar(val),
+    err => {
+      this.showSnackBar(err.error)
+    });
 
 
   }
@@ -205,15 +212,7 @@ export class DetailsTrainingComponent implements OnInit {
 
   rateTraining(){
 
-    this.trainingService.GetRatingByUserAndTraining(this.JWTservice.getUser(), Number(this.route.snapshot.paramMap.get('id'))).subscribe(val => this.setUserRating(val));
-
-   
-
-    
-
-    
-
-
+    this.trainingService.GetRatingByUserAndTraining(this.JWTservice.getUser(), this.route.snapshot.paramMap.get('id')).subscribe(val => this.setUserRating(val));
 
   }
 
@@ -221,9 +220,9 @@ export class DetailsTrainingComponent implements OnInit {
     this.userRating = val;
 
     if(!this.userRating){
-      this.userRating = { trainingId: Number(this.route.snapshot.paramMap.get('id')) } ;
+      this.userRating = { trainingId: this.route.snapshot.paramMap.get('id') } ;
     }else{
-      this.userRating.trainingId = Number(this.route.snapshot.paramMap.get('id'));
+      this.userRating.trainingId = this.route.snapshot.paramMap.get('id');
     }
 
     this.openRatingDialog();
@@ -237,11 +236,10 @@ export class DetailsTrainingComponent implements OnInit {
       }
     );
   }
-
-
+  
   loadComments(ev){
 
-    this.trainingService.GetRatings(Number(this.route.snapshot.paramMap.get('id')), this.commentsPage).subscribe(val => this.addComments(val));
+    this.trainingService.GetRatings(this.route.snapshot.paramMap.get('id'), this.commentsPage).subscribe(val => this.addComments(val));
 
     console.log('called');
 

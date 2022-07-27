@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { JWTService } from 'app/jwt.service';
+import { LoginService } from 'app/login.service';
 import { MyErrorStateMatcher } from 'app/login/login.component';
 import { UserService } from 'app/user.service';
 import { UsernameValidator } from 'app/username-validator';
@@ -46,7 +48,7 @@ export class UserProfileComponent implements OnInit {
       this.emailValidator),
   });
 
-  constructor(private JWTservice: JWTService, private userService: UserService) { }
+  constructor(private JWTservice: JWTService, private userService: UserService, private loginService : LoginService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -58,9 +60,9 @@ export class UserProfileComponent implements OnInit {
 
     this.unchangedUser = user;
 
-    this.userUpdateForm.controls['id'].patchValue(user.id);
-    this.userUpdateForm.controls['userName'].patchValue(user.user);
-    this.userUpdateForm.controls['actualEmail'].patchValue(user.email);
+    this.userUpdateForm.controls['id'].patchValue(user.id ? user.id : user._id);
+    this.userUpdateForm.controls['userName'].patchValue(user.user ? user.user : user.User);
+    this.userUpdateForm.controls['actualEmail'].patchValue(user.email ? user.email : user.Email);
 
   }
 
@@ -73,12 +75,8 @@ export class UserProfileComponent implements OnInit {
 
       let emailInputB = control.parent.get('emailConfirm');
 
-      console.log(emailInputA.value);
-      console.log(emailInputB.value);
-
 
       if (emailInputA.value != emailInputB.value && emailInputA.value.length > 0 ) {
-        console.log("this executes");
         return { emailValidator: true }
       }
       else {
@@ -174,7 +172,35 @@ export class UserProfileComponent implements OnInit {
       user.email = this.userUpdateForm.get('actualEmail').value;
     }
     
-    this.userService.updateUser(user).subscribe(val => console.log);
+    this.userService.updateUser(user).subscribe(res => {
+
+      this.loginService.Login(user.user, user.password).subscribe( res => {
+
+        //setting jwt
+
+        this.JWTservice.setToken(res.value);
+
+
+
+        let snackBarRef = this._snackBar.open("correctly updated");
+
+        snackBarRef.afterDismissed().subscribe(() =>{
+          this.ngOnInit();
+        });
+
+        snackBarRef._dismissAfter(3000);
+
+        snackBarRef._open();
+      });
+
+    },
+    err =>{
+      let snackBarRef = this._snackBar.open("something went wrong");
+
+      snackBarRef._dismissAfter(3000);
+
+        snackBarRef._open();
+    });
 
   }
 

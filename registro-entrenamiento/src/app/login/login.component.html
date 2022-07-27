@@ -1,3 +1,5 @@
+<link type="text/css" href="/registro-entrenamiento/src/dark-styles.css" rel="stylesheet">
+
 <app-app-toolbar></app-app-toolbar>
 
 <mat-card class="md-primary mat-elevation-z8" style="max-width: 400px; margin:auto; margin-top: 2em; padding: 0px;">
@@ -11,7 +13,7 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="Login()">
 
-            <mat-form-field class="userField" >
+            <mat-form-field class="userField" appearance="outline">
                 <mat-label>User</mat-label>
                 <input matInput formControlName="userFormControl" [errorStateMatcher]="matcher" id="user" [(ngModel)]="user">
                 <mat-error *ngIf="loginForm.get('userFormControl').hasError('required')">
@@ -20,7 +22,7 @@
         
             </mat-form-field>
         
-            <mat-form-field class="passwordField" >
+            <mat-form-field class="passwordField" appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" id="password" matInput formControlName="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="password">
                 <mat-error *ngIf="loginForm.get('passwordFormControl').hasError('required')">

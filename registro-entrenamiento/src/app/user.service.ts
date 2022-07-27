@@ -30,7 +30,7 @@ export class UserService {
   }
 
 
-  getIsUsernameTaken(userName: string, id: number){
+  getIsUsernameTaken(userName: string, id){
 
     let params = new HttpParams()
    .set('userName', userName)

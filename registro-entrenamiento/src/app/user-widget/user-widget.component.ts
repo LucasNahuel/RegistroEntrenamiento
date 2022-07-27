@@ -27,7 +27,7 @@ export class UserWidgetComponent implements OnInit {
     this.renderer.listen('window','click', (e: Event)=>{
 
 
-      if(e.target !== this.toggleButton.nativeElement && !this.toggleButton.nativeElement.contains(e.target) && !this.menu.nativeElement.contains(e.target)){
+      if( e.target !== this.toggleButton.nativeElement && !this.toggleButton.nativeElement.contains(e.target) && !this.menu.nativeElement.contains(e.target)){
 
         this.userMenuOpen = false;
       }

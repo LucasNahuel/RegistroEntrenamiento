@@ -88,14 +88,14 @@ export class TrainingLogService {
   }
 
 
-  GetTrainingsByName(name:string, page:number){
+  GetTrainingsByName(name:string, page:number): any{
 
     let params = new HttpParams();
 
     params = params.append('name', name);
     params = params.append('page', page);
 
-    return this.http.post<any>(environment.apiUrl+"getTrainingsByName", params);
+    return this.http.get<any>(environment.apiUrl+"getTrainingsByName", {params});
 
   }
 
@@ -105,11 +105,11 @@ export class TrainingLogService {
 
     params = params.append('id', id.toString());
 
-    return this.http.post<any>(environment.apiUrl+"getTrainingsById", params);
+    return this.http.get<any>(environment.apiUrl+"getTrainingsById", {params});
 
   }
 
-  SaveTraining(id: number, user: string){
+  SaveTraining(id, user: string){
     let params = new HttpParams();
 
     params = params.append('id', id);
@@ -118,7 +118,7 @@ export class TrainingLogService {
     return this.http.post<any>(environment.apiUrl+"setTrainingActive", params);
   }
 
-  RateTraining(trainingFK: number, userName: string, rate: number, comment: string){
+  RateTraining(trainingFK, userName: string, rate: number, comment: string){
 
     let params = new HttpParams();
 
@@ -132,24 +132,24 @@ export class TrainingLogService {
 
   }
 
-  GetRatings(trainingFK: number, pageNo: number){
+  GetRatings(trainingFK, pageNo: number){
 
     let params = new HttpParams();
 
     params = params.append('trainingFK', trainingFK);
     params = params.append('pageNo', pageNo);
 
-    return this.http.post<any>(environment.apiUrl+"getRatingsPage", params);
+    return this.http.get<any>(environment.apiUrl+"getRatingsPage", {params});
   }
 
-  GetRatingByUserAndTraining(userName: string, trainingFK: number ){
+  GetRatingByUserAndTraining(userName: string, trainingFK ){
 
     let params = new HttpParams();
 
     params = params.append('userName', userName);
     params = params.append('trainingFK', trainingFK);
 
-    return this.http.post<any>(environment.apiUrl+"getRatingByUserAndTraining", params);
+    return this.http.get<any>(environment.apiUrl+"getRatingByUserAndTraining", {params});
 
   }
   

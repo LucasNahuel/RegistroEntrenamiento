@@ -22,7 +22,7 @@
 
         <form [formGroup]="createTrainingForm" (ngSubmit)="Save()" style=" padding: 2em; padding-top: 0;">
 
-            <mat-form-field class="title" >
+            <mat-form-field class="title" appearance="outline">
                 <mat-label>Training name</mat-label>
                 <input matInput formControlName="title" [errorStateMatcher]="createTrainingMatcher" id="title" >
                 <mat-error *ngIf="createTrainingForm.get('title').hasError('required')">
