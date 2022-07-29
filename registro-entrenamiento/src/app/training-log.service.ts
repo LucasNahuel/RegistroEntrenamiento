@@ -70,7 +70,7 @@ export class TrainingLogService {
 
     params = params.append('user',user);
 
-    return this.http.post<any>(environment.apiUrl+"getTrainingAndExercices", params);
+    return this.http.get<any>(environment.apiUrl+"getTrainingAndExercices", {params});
   }
 
 
@@ -83,7 +83,7 @@ export class TrainingLogService {
     params = params.append('dateBegin', dateBegin);
     params = params.append('dateEnd', dateEnd);
 
-    return this.http.post<any>(environment.apiUrl+"getAnalytics", params);
+    return this.http.get<any>(environment.apiUrl+"getAnalytics", {params});
 
   }
 
