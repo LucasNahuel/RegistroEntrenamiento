@@ -40,7 +40,7 @@
         
                     <div style="width: 50%; text-align:right;">
     
-                        <button mat-icon-button mat-mini-fab color="warn" (click)="deleteTraining(t.id, trainings.indexOf(t))" style="margin-right: 1em;">
+                        <button mat-icon-button mat-mini-fab color="warn" (click)="deleteTraining(t.id ? t.id : t._id, trainings.indexOf(t))" style="margin-right: 1em;">
                             <mat-icon>delete</mat-icon>
                         </button>
                 

@@ -1,6 +1,8 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'environments/environment';
 import { JWTService } from '../jwt.service';
 import { TrainingLogService } from '../training-log.service';
@@ -16,7 +18,7 @@ export class DeleteTrainingComponent implements OnInit {
 
   primaryColor= environment.primaryColor;
 
-  constructor(private trainingLogService:TrainingLogService, private jwtService: JWTService) { }
+  constructor(private trainingLogService:TrainingLogService, private jwtService: JWTService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -29,10 +31,10 @@ export class DeleteTrainingComponent implements OnInit {
     console.log(trainings);
   }
 
-  deleteTraining(trainingId:number, trainingIndex:number){
+  deleteTraining(trainingId, trainingIndex:number){
 
 
-    this.trainingLogService.DeleteTraining(trainingId, this.jwtService.getUser()).subscribe(val => console.log(val));
+    this.trainingLogService.DeleteTraining(trainingId, this.jwtService.getUser()).subscribe(val => this.showDialog(val), err => this.showDialog(err.error));
 
 
     this.trainings.splice(trainingIndex, 1);
@@ -42,6 +44,19 @@ export class DeleteTrainingComponent implements OnInit {
     console.log(this.trainings.length);
 
 
+  }
+
+
+  showDialog(message){
+    let snackBarRef = this._snackBar.open(message.message);
+
+    snackBarRef.afterDismissed().subscribe(() =>{
+      console.log('the snackbar dismissed');
+    });
+
+    snackBarRef._dismissAfter(3000);
+
+    snackBarRef._open();
   }
 
 

@@ -256,6 +256,9 @@ export class DetailsTrainingComponent implements OnInit {
 }
 
 
+
+
+
 export class Exercises{
   exerciseName : String;
   sets: any[];

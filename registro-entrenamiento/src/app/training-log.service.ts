@@ -51,14 +51,14 @@ export class TrainingLogService {
 
     params = params.append('user', user);
 
-    return this.http.post<any>(environment.apiUrl+"getTrainingsByUser", params);
+    return this.http.get<any>(environment.apiUrl+"getTrainingsByUser", {params});
 
   }
 
-  DeleteTraining(trainingId:number, user:string){
+  DeleteTraining(trainingId, user:string){
     let params = new HttpParams();
 
-    params = params.append('trainingId', trainingId.toString());
+    params = params.append('trainingId', trainingId);
     params = params.append('user', user);
 
     return this.http.post<any>(environment.apiUrl+"deleteTraining", params);
