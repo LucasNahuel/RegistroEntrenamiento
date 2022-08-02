@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/',
+  apiUrl: 'https://training-register-nodejs-api-3-o2drdhxvs-lucasnahuel.vercel.app/',
+  
   primaryColor: "#3f51b5",
   secondaryColor: "#ff4081"
 };
