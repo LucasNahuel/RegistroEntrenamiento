@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://training-register-nodejs-api-3-eabzgm49g-lucasnahuel.vercel.app/',
-  
+  //apiUrl: 'https://training-register-nodejs-api-3-eabzgm49g-lucasnahuel.vercel.app/',
+  //apiUrl: 'http://localhost:3000/',
+  apiUrl: 'https://training-register-nodejs-api-3.vercel.app/',
   primaryColor: "#3f51b5",
   secondaryColor: "#ff4081"
 };
