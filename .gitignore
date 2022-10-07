@@ -10,6 +10,7 @@
 # dependencies
 /node_modules
 /registro-entrenamiento/node_modules
+/registro-entrenamiento/node_modules/
 
 # profiling files
 chrome-profiler-events*.json
