@@ -31,7 +31,10 @@
         </div>
     </div>
 
-    <div *ngIf="trainingArray.length > 0">
+
+    <mat-spinner *ngIf="isTrainingLoading" style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: auto;"></mat-spinner>
+
+    <div *ngIf="(trainingArray.length > 0) && !isTrainingLoading" >
 
         <div  *ngFor="let training of trainingArray" style="max-width:800px; margin-left: auto; margin-right:auto; background-color: white; border-radius: 4px; margin-top: 1em;" class="mat-elevation-z8">
 

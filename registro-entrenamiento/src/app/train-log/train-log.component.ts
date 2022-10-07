@@ -22,6 +22,8 @@ export class TrainLogComponent implements OnInit {
 
   trainingArray :Array<any> = ["no training"];
 
+  isTrainingLoading = true;
+
   
   
   primaryColor= environment.primaryColor;
@@ -31,7 +33,11 @@ export class TrainLogComponent implements OnInit {
   ngOnInit() {
 
 
-    this.trainingLogService.GetTraining(this.JWTservice.getUser(), this.date).subscribe(val => this.setTraining(val))
+    this.trainingLogService.GetTraining(this.JWTservice.getUser(), this.date).subscribe((val) => {
+      
+      this.isTrainingLoading = false;
+      this.setTraining(val);
+    });
     
   }
 
@@ -57,6 +63,8 @@ export class TrainLogComponent implements OnInit {
 
   ChangeDate() :void{
 
+    this.isTrainingLoading = true;
+
     let newDate = new Date();
 
     newDate.setDate(newDate.getDate() + (this.dateOffset));
@@ -65,7 +73,10 @@ export class TrainLogComponent implements OnInit {
 
     this.date = this.FormatDate(newDate);
 
-    this.trainingLogService.GetTraining(this.JWTservice.getUser(), this.date).subscribe(val => this.setTraining(val));
+    this.trainingLogService.GetTraining(this.JWTservice.getUser(), this.date).subscribe((val) => {
+      this.isTrainingLoading = false;
+      this.setTraining(val)}
+    );
   }
 
   DateBack(){
@@ -75,6 +86,8 @@ export class TrainLogComponent implements OnInit {
   }
 
   DateForward(){
+
+
     this.dateOffset = this.dateOffset +1;
 
     this.ChangeDate();
