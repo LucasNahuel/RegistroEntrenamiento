@@ -2,7 +2,7 @@
 
 <app-app-toolbar></app-app-toolbar>
 
-<mat-card class="md-primary mat-elevation-z8" style="max-width: 400px; margin:auto; margin-top: 2em; padding: 0px;">
+<mat-card class="md-primary mat-elevation-z8" style="max-width: 400px; margin:auto; margin-top: 2em; padding: 0px; position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; margin-bottom: auto; margin-top: auto; height: fit-content;">
 
     <mat-card-header class="md-primary" style="border-radius: 5px 5px 0px 0px; padding-top: 1em; padding-left: 1em;" [ngStyle]="{'background-color': primaryColor}">
         <mat-card-title style="color:white;">Login</mat-card-title>
@@ -32,7 +32,8 @@
             </mat-form-field>
             <div style="display: flex; justify-content: end;">
             
-                <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+                <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid" *ngIf="!isLoading">Login</button>
+                <mat-spinner color="accent" *ngIf="isLoading" style="margin-right: 20px;"></mat-spinner>
             </div>
             
         </form>

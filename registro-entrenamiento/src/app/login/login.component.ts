@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
    password="";
    primaryColor= environment.primaryColor;
 
+   isLoading = false;
+
   constructor(private loginService: LoginService, public dialog: MatDialog, public jwtservice: JWTService, public router: Router) { }
 
   ngOnInit() {
@@ -56,7 +58,11 @@ export class LoginComponent implements OnInit {
   
   Login(): void{
 
+    this.isLoading = true;
+
     this.loginService.Login(this.user, this.password).subscribe(val => this.LoginResponse(val), err => { 
+
+      this.isLoading = false;
 
       if (err.status == 401){
 

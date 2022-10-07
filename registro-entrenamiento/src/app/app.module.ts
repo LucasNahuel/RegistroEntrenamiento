@@ -49,6 +49,7 @@ import { RatingTrainingDialogComponent } from './dialogs/rating-training-dialog/
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -104,7 +105,8 @@ import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.compon
         MatNativeDateModule,
         MatSnackBarModule,
         InfiniteScrollModule,
-        MatRippleModule
+        MatRippleModule,
+        MatProgressSpinnerModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
